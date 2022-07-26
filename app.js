@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+require('dotenv').config();
 const { home } = require('./routes/home');
-const port = 8000;
+const port = 3000;
 
 
 //body parser middleware
@@ -20,7 +21,7 @@ app.use("/" , home)
 
 
 
-app.listen(port, (err, res)=>{
+app.listen(process.env.PORT || port, (err, res)=>{
 
     if(err) throw err;
     else console.log(`Server running on port ${port}`)
