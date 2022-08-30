@@ -30,12 +30,15 @@ const handlePost = async(req, res)=>{
 //    const {csv }= req.body.file;
 //    console.log(csv)
 let data = await convertJson(req.file.path);
+
 if(data){
  let testData= await run(data);
+
  converter.json2csv(testData, (err, csv)=>{
+  console.log(csv)
   if(err) throw err;
 
-  res.status(201).attachment("scrapedData.csv").send(csv)
+  res.status(201).attachment( `${ data[0].Store}.csv`).send(csv)
  })
   
   

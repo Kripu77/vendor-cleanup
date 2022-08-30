@@ -4,11 +4,11 @@ const { convertJson } = require("./dataSource");
 const path = require("path");
 const { writeFileCSV } = require("./fileWriter");
 const csvPath = path.resolve(__dirname, "./datacleanup.csv");
-const fullName = [];
-const code = [];
-const status = [];
-const compliedStatus = [
-  { FullName: "Item Code Details", Code: "Code", Status: "Status" },
+let fullName = [];
+let code = [];
+let status = [];
+let compliedStatus = [
+ 
 ];
 
 function pushStatus(fullNamex, codex, statusx) {
@@ -44,7 +44,7 @@ async function run(json) {
     await page.evaluate(
       (userName, password) => {
         document.getElementById("Login_UserName").value = userName;
-        document.getElementById("Login_Password").value = "000";
+        document.getElementById("Login_Password").value = password;
       },
       process.env.USER_NAME,
       process.env.PASSWORD
@@ -116,7 +116,7 @@ async function run(json) {
           "div > .rcbList > .rcbHovered",
           (elem) => elem.textContent
         );
-        console.log(innerText);
+      
         pushStatus(innerText, json[i].vendoritemcode, "Active");
       } else {
         pushStatus("NA", json[i].vendoritemcode, "Inactive");
@@ -130,14 +130,14 @@ async function run(json) {
     //convert into array of objects
     code.forEach((value, index) => {
       compliedStatus.push({
-        FullName: fullName[index],
+        codeDetails: fullName[index],
         Code: code[index],
         Status: status[index],
       });
     });
 
-    //writes the data in csv
-    writeFileCSV(json[0].Store, json[0].vendorName, compliedStatus);
+    //writes the data in csv, disabled due to backedn usage
+    // writeFileCSV(json[0].Store, json[0].vendorName, compliedStatus);
 
     await page.click("#ctl00_ph_ButtonDeleteTemplate");
     await browser.close();
@@ -151,6 +151,7 @@ async function run(json) {
   }
 
 }
+
 
 
 module.exports ={
