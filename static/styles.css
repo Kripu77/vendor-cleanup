@@ -7,12 +7,13 @@ body {
     margin: 0;
     text-align: center;
     overflow-x: hidden;
+    background-color: #EDBF69;
   }
   h1, h2 {
     margin-bottom: 5px;
     font-weight: normal;
     text-align: center;
-    color:white;
+    color:Black;
   }
   h2 {
     margin: 5px 0 2em;

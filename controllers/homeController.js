@@ -38,7 +38,7 @@ if(data){
   console.log(csv)
   if(err) throw err;
 
-  res.status(201).attachment( `${ data[0].Store}.csv`).send(csv)
+  res.status(201).attachment( `${data[0].vendorName} | ${ data[0].Store}.csv`).send(csv)
  })
   
   
