@@ -60,20 +60,21 @@ async function run(json) {
     const x = await page.$("#ctl00_ph_MXStoreDDL_RadComboBoxEntity_Input");
     await x.type(json[0].Store);
     await page.keyboard.press("Enter");
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(6000);
     // await page.click(".rwCloseButton", {delay:1000})
 
-    await page.click("#ctl00_ph_DropdownlistTemplateType_Input");
-    await page.waitForTimeout(3000);
+    // await page.click("#ctl00_ph_DropdownlistTemplateType_Input");
+    await page.waitForTimeout(8000);
 
-    await page.evaluate((orderCategory) => {
-      document.getElementById("ctl00_ph_DropdownlistTemplateType_Input").value =
-        orderCategory;
-    }, json[0].orderCategory);
-    for (i = 0; i < 3; i++) {
-      await page.keyboard.press("ArrowDown");
-    }
-    await page.keyboard.press("Enter");
+    // await page.evaluate((orderCategory) => {
+    //   document.getElementById("ctl00_ph_DropdownlistTemplateType_Input").value =
+    //     orderCategory;
+    // }, json[0].orderCategory);
+    // await page.waitForTimeout(8000);
+    // for (i = 0; i < 3; i++) {
+    //   await page.keyboard.press("ArrowDown");
+    // }
+    // await page.keyboard.press("Enter");
 
     //select the vendor
 
